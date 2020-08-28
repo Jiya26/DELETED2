@@ -1,15 +1,49 @@
-const Bodies = Matter.Bodies;
-var ground,box;
 
+const Engine = Matter.Engine;
+const World = Matter.World;
+const Bodies = Matter.Bodies;
+const Body = Matter.Body;
+var boy,boyImg;
+var tree,treeImg;
+var stone,stoneImg;
+
+function preload()
+{
+   boyImg = loadImage("img/Plucking mangoes/boy.png");
+   treeImg = loadImage("img/Plucking mangoes/tree.png");
+   stoneImg = loadImage("img/Plucking mangoes/stone.png");
+}
 
 function setup() {
-  createCanvas(1200,400);
+	createCanvas(900, 800);
+
+
+	engine = Engine.create();
+	world = engine.world;
+
+	//Create the Bodies Here.
+	boy=createSprite(150,600,20,20);
+	boy.addImage("boy",boyImg);
+	boy.scale = 0.1;
+
+	tree = createSprite(600,400,20,20);
+	tree.addImage("tree",treeImg);
+	tree.scale = 0.5;
+
+	stone = new StoneClass(100,100,10,10);
+
+	Engine.run(engine);
   
-  ground = new Ground(600,400,1200,20);
 }
 
+
 function draw() {
-  background(255,255,255);  
-  ground.display();
+  rectMode(CENTER);
+  background(0);
+  boy.display();
   drawSprites();
+ 
 }
+
+
+
